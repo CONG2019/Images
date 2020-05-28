@@ -160,7 +160,38 @@ SELECT column_name,column_name
 FROM table_name
 [WHERE Clause]
 [LIMIT N][ OFFSET M]
+
+#分页查询
+SELECT id, name, gender, score
+FROM students
+ORDER BY score DESC
+LIMIT 3 OFFSET 10;
+#OFFSET为从第几条数据开始，超过所有数据不报错，返回空数据集
+
+#对于统计总数、平均数这类计算，SQL提供了专门的聚合函数，使用聚合函数进行查询，就是聚合查询，它可以快速获得结果。
+SELECT COUNT(*) FROM students;
+
+#连接查询，内连接
+SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+FROM students s
+INNER JOIN classes c
+ON s.class_id = c.id;
+#1. 先确定主表，仍然使用FROM <表1>的语法；
+#2. 再确定需要连接的表，使用INNER JOIN <表2>的语法；
+#3. 然后确定连接条件，使用ON <条件...>，这里的条件是s.class_id = c.id，表示students表的class_id列与classes表的id列相同的行需要连接；
+#4. 可选：加上WHERE子句、ORDER BY等子句。
+
 ```
+
+**聚合函数**
+
+| 函数  | 说明                                   |
+| ----- | -------------------------------------- |
+| SUM   | 计算某一列的合计值，该列必须为数值类型 |
+| AVG   | 计算某一列的平均值，该列必须为数值类型 |
+| MAX   | 计算某一列的最大值                     |
+| MIN   | 计算某一列的最小值                     |
+| COUNT | 统计某一列的记录数                     |
 
 - 查询语句中你可以使用一个或者多个表，表之间使用逗号(,)分割，并使用WHERE语句来设定查询条件。
 - 你可以使用 WHERE 语句来包含任何条件。
@@ -513,12 +544,15 @@ ALTER TABLE students ADD CONSTRAINT fk_class_id FOREIGN KEY (class_id) REFERENCE
 
 ## 索引
 
+***索引是关系数据库中对某一列或多个列的值进行预排序的数据结构。通过使用索引，可以让数据库系统不必扫描整个表，而是直接定位到符合条件的记录，这样就大大加快了查询速度。***
+
 **优点**
 
 - MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。
 - 索引分单列索引和组合索引。单列索引，即一个索引只包含单个列，一个表可以有多个单列索引。组合索引，即一个索引包含多个列。
 - 创建索引时，你需要确保该索引是应用在	SQL 查询语句的条件(一般作为 WHERE 子句的条件)。
 - **实际上，索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录。**
+- 对于主键，关系数据库会自动对其创建主键索引。使用主键索引的效率是最高的，因为主键会保证绝对唯一。
 
 **缺点**
 
@@ -1170,3 +1204,4 @@ mysqlimport -u root -p --local --fields-terminated-by=":" \
 
 ### 运算符优先级
 
+![运算符优先级](https://github.com/CONG2019/Images/blob/master/sql/%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7.png?raw=true)
