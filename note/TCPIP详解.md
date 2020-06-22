@@ -1,13 +1,26 @@
 # 概述
 
 1. TCP/IP协议族中不同层次协议
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_131500.jpg">
+
 2. 五种互联网地址
-3. 数据进入协议栈时的分装过程
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_131504.jpg">
+
+3. 数据进入协议栈时的封装过程
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_131608.jpg">
+
 4. 以太网数据帧的分用过程
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_144036.jpg">
 
 # 链路层
 
 1. IEEE802.2/802.3和以太网的分装格式
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_125444.jpg">
 
 2. SLIP：串行线路IP
 
@@ -28,7 +41,10 @@
 ## 环回接口
 
 1. A类网络号127就是为环回接口预留的（127.0.0.1, localhost）
+
 2. 环回接口处理IP数据报过程
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_130810.jpg">
 
 ## 最大传输单元MTU
 
@@ -42,13 +58,25 @@
 ## IP首部
 
 1. IP数据报格式及首部中的各字段
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_153848.jpg">
+
 2. 目前版本号为4（IPv4）
+
 3. 首部长度是指首部32bit字的数目，一般没有选项就是5（20字节）
+
 4. 服务类型TOS，3bit优先权子字段，4bitTOS（最小延时，最大吞吐量，最高可靠性，最小费用），1bit保留位，必须为0
+
+   <img src="https://media.githubusercontent.com/media/CONG2019/Images/master/tcpip/IMG_20200622_154507.jpg">
+
 5. 总长度字段指整个IP数据报长度，最长可达65535字节
+
 6. 标识字段唯一标识主机发送的每一份数据报，通常每发一份，其值加一
+
 7. TTL生存时间，指经过的最多路由数，由源主机设置，一般32或64
+
 8. 协议字段用来表示哪个协议向IP传送数据
+
 9. 16位首部校验和，取反码相加，接收方结果应该全为1
 
 ## IP路由选择
